@@ -35,14 +35,14 @@
     var start = new Date(); start.setHours(0,0,0,0);
     $("s-total").textContent = data.length;
     $("s-today").textContent = data.filter(function(r){ return r.submittedAt >= start.getTime(); }).length;
-    $("s-dept").textContent = data.filter(function(r){ return r.dept; }).length;
+    $("s-named").textContent = data.filter(function(r){ return r.name; }).length;
     $("s-last").textContent = data.length ? fmt(Math.max.apply(null, data.map(function(r){ return r.submittedAt; }))) : "—";
 
     var keys = q === "all" ? KEYS : [q];
     var shown = data.filter(function(r){
       if(q !== "all" && !r[q]) return false;
       if(!kw) return true;
-      var hay = [r.name, r.dept].concat(keys.map(function(k){ return r[k]; })).join("\n").toLowerCase();
+      var hay = [r.name].concat(keys.map(function(k){ return r[k]; })).join("\n").toLowerCase();
       return hay.indexOf(kw.toLowerCase()) >= 0;
     });
     $("list-status").textContent = (kw || q !== "all") ? "筛选后显示 " + shown.length + " / " + data.length + " 份" : "";
@@ -54,7 +54,6 @@
       var card = el("article", "resp");
       var head = el("div", "head");
       var nm = el("span", "name"); highlight(nm, r.name || "匿名", kw); head.appendChild(nm);
-      if(r.dept){ var dp = el("span", "sub"); highlight(dp, r.dept, kw); head.appendChild(dp); }
       head.appendChild(el("span", "sub", "提交于 " + fmt(r.submittedAt) + (fmt(r.updatedAt) !== fmt(r.submittedAt) ? " · 更新于 " + fmt(r.updatedAt) : "")));
       head.appendChild(el("span", "sp"));
       var del = el("button", "btn danger sm", "删除"); del.type = "button";

@@ -144,7 +144,7 @@ const server = http.createServer(async (req, res) => {
       if (!KEYS.some(k => answers[k])) return send(res, 400, { error: '请至少回答一道题后再提交。' });
       const editToken = typeof body.editToken === 'string' && /^[a-f0-9]{32}$/.test(body.editToken) ? body.editToken : null;
       const now = Date.now();
-      const meta = { name: clean(body.name, 40), dept: clean(body.dept, 60) };
+      const meta = { name: clean(body.name, 40) };
       let rec = editToken && responses.find(r => r.editToken === editToken);
       if (rec) {
         Object.assign(rec, meta, answers, { updatedAt: now });
@@ -185,9 +185,9 @@ const server = http.createServer(async (req, res) => {
         return send(res, 200, { questions: QUESTIONS, responses: list });
       }
       if (req.method === 'GET' && p === '/api/admin/export.csv') {
-        const head = ['编号', '姓名', '部门', '提交时间', '最近更新', ...QUESTIONS.map((q, i) => `Q${i + 1} ${q}`)];
+        const head = ['编号', '花名', '提交时间', '最近更新', ...QUESTIONS.map((q, i) => `Q${i + 1} ${q}`)];
         const rows = [head, ...responses.slice().sort((a, b) => a.submittedAt - b.submittedAt)
-          .map(r => [r.id, r.name, r.dept, fmtTime(r.submittedAt), fmtTime(r.updatedAt), ...KEYS.map(k => r[k])])];
+          .map(r => [r.id, r.name, fmtTime(r.submittedAt), fmtTime(r.updatedAt), ...KEYS.map(k => r[k])])];
         const csv = '﻿' + rows.map(r => r.map(csvCell).join(',')).join('\r\n');
         return send(res, 200, csv, {
           'Content-Type': 'text/csv; charset=utf-8',

@@ -26,7 +26,7 @@
     var c = document.createElement("span"); c.className = "count"; c.id = KEYS[i]+"-c"; body.appendChild(c);
     d.appendChild(num); d.appendChild(body); box.appendChild(d);
   });
-  var inputs = KEYS.map(function(k){ return $(k); }).concat([$("name"), $("dept")]);
+  var inputs = KEYS.map(function(k){ return $(k); }).concat([$("name")]);
   function count(el){ var c = $(el.id+"-c"); if(c) c.textContent = el.value.length + " / " + MAX; }
   function fill(obj){ inputs.forEach(function(el){ if(obj[el.id] != null) el.value = obj[el.id]; count(el); }); }
   function values(){ var o = {}; inputs.forEach(function(el){ o[el.id] = el.value.trim(); }); return o; }
