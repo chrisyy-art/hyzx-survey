@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>问卷管理后台 · 数科行研中心</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<form class="login" id="login" hidden>
+  <div class="eyebrow">数科行研中心 · 管理后台</div>
+  <h2>登录后查看问卷回复</h2>
+  <div class="field"><label for="pw">管理员密码</label><input type="password" id="pw" autocomplete="current-password" required></div>
+  <button class="btn" type="submit">登录</button>
+  <span class="status" id="login-status" role="status"></span>
+</form>
+
+<main class="wrap wide" id="app" hidden>
+  <div class="topbar">
+    <header>
+      <div class="eyebrow">数科行研中心 · 管理后台</div>
+      <h1>2026 年度用户体验问卷回复</h1>
+    </header>
+    <div class="right">
+      <a class="btn ghost" href="/" target="_blank" rel="noopener">打开问卷页</a>
+      <a class="btn" href="/api/admin/export.csv">导出 CSV</a>
+      <button class="btn ghost" type="button" id="logout">退出</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><span class="k">回复总数</span><span class="v" id="s-total">0</span></div>
+    <div class="stat"><span class="k">今日新增</span><span class="v" id="s-today">0</span></div>
+    <div class="stat"><span class="k">留了部门信息</span><span class="v" id="s-dept">0</span></div>
+    <div class="stat"><span class="k">最近一次提交</span><span class="v small" id="s-last">—</span></div>
+  </div>
+
+  <div class="filters">
+    <input type="search" id="kw" placeholder="搜索回答、姓名或部门">
+    <select id="qsel" aria-label="按题目查看"><option value="all">全部题目</option></select>
+    <button class="btn ghost" type="button" id="refresh">刷新</button>
+  </div>
+  <p class="status" id="list-status"></p>
+  <div class="list" id="list"></div>
+</main>
+<script src="/assets/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>数科行研中心 2026 年度用户体验问卷</title>
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div class="eyebrow">数科行研中心 · 2026 年度调研</div>
+    <h1>数科行研中心 2026 年度用户体验问卷</h1>
+    <p class="lead">感谢您过去一年对行研中心的使用与支持。以下 5 道开放题帮助我们了解您真实的使用场景和期待，您的反馈将直接用于 2027 年的内容规划与运营改进。</p>
+    <div class="meta"><span>题目 <b>5 道开放题</b></span><span>预计用时 <b>约 8 分钟</b></span><span>未提交内容 <b>自动保存在本机</b></span></div>
+  </header>
+
+  <div class="notice" id="notice" hidden></div>
+
+  <form id="survey" novalidate>
+    <div class="who">
+      <div class="field"><label for="name">姓名 <span class="opt">（选填）</span></label><input type="text" id="name" maxlength="40" autocomplete="name"></div>
+      <div class="field"><label for="dept">部门 / 岗位 <span class="opt">（选填）</span></label><input type="text" id="dept" maxlength="60"></div>
+      <p class="tip">不填写也可以提交。留下部门信息能帮助我们按团队整理需求。</p>
+    </div>
+    <div id="questions"></div>
+    <div class="actions">
+      <button class="btn" type="submit" id="submit">提交问卷</button>
+      <span class="status" id="status" role="status" aria-live="polite"></span>
+    </div>
+  </form>
+
+  <section class="done" id="done" hidden>
+    <h2>提交成功，感谢您的反馈！</h2>
+    <p class="lead" id="done-text">我们会认真阅读每一条意见。</p>
+    <button class="btn ghost" type="button" id="edit-again">修改我的回答</button>
+  </section>
+
+  <footer>数科行研中心 · 本问卷仅用于 2026 年度用户体验调研</footer>
+</main>
+<script src="/assets/app.js"></script>
+</body>
+</html>

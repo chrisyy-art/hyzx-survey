@@ -1,0 +1,9 @@
+{
+  "name": "hyzx-survey-2026",
+  "version": "1.0.0",
+  "private": true,
+  "description": "数科行研中心 2026 年度用户体验问卷（零依赖 Node.js 服务）",
+  "main": "server.js",
+  "engines": { "node": ">=18" },
+  "scripts": { "start": "node server.js" }
+}

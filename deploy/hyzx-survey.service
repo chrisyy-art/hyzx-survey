@@ -1,0 +1,16 @@
+# 不用 Docker 时的 systemd 配置：放到 /etc/systemd/system/hyzx-survey.service
+[Unit]
+Description=HYZX 2026 user survey
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/hyzx-survey
+ExecStart=/usr/bin/node server.js
+Environment=PORT=3000
+Environment=HOST=127.0.0.1
+EnvironmentFile=/opt/hyzx-survey/.env
+Restart=always
+User=www-data
+
+[Install]
+WantedBy=multi-user.target

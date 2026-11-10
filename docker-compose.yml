@@ -1,0 +1,12 @@
+services:
+  survey:
+    build: .
+    container_name: hyzx-survey
+    restart: unless-stopped
+    environment:
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?请在 .env 中设置 ADMIN_PASSWORD}
+      PORT: 3000
+    ports:
+      - "127.0.0.1:3000:3000"   # 只对本机开放，由 Nginx 对外；不用 Nginx 时改成 "80:3000"
+    volumes:
+      - ./data:/app/data
