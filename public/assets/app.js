@@ -18,7 +18,7 @@
   var box = $("questions");
   QS.forEach(function(q,i){
     var d = document.createElement("div"); d.className = "q";
-    var num = document.createElement("div"); num.className = "num"; num.textContent = String(i+1).padStart(2,"0");
+    var num = document.createElement("div"); num.className = "num"; num.textContent = "第 " + (i+1) + " 题 / 共 " + QS.length + " 题";
     var body = document.createElement("div"); body.className = "body";
     var lb = document.createElement("label"); lb.htmlFor = KEYS[i]; lb.textContent = q.t; body.appendChild(lb);
     if(q.h){ var h = document.createElement("div"); h.className = "hint"; h.textContent = q.h; body.appendChild(h); }
