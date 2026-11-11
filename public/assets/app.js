@@ -22,7 +22,7 @@
     var body = document.createElement("div"); body.className = "body";
     var lb = document.createElement("label"); lb.htmlFor = KEYS[i]; lb.textContent = q.t; body.appendChild(lb);
     if(q.h){ var h = document.createElement("div"); h.className = "hint"; h.textContent = q.h; body.appendChild(h); }
-    var ta = document.createElement("textarea"); ta.id = KEYS[i]; ta.maxLength = MAX; ta.placeholder = "请在此输入您的回答"; body.appendChild(ta);
+    var ta = document.createElement("textarea"); ta.id = KEYS[i]; ta.maxLength = MAX; ta.placeholder = "请在此输入你的回答"; body.appendChild(ta);
     var c = document.createElement("span"); c.className = "count"; c.id = KEYS[i]+"-c"; body.appendChild(c);
     d.appendChild(num); d.appendChild(body); box.appendChild(d);
   });
@@ -41,7 +41,7 @@
   function notice(msg, cls){ var n = $("notice"); n.textContent = msg; n.className = "notice " + (cls||""); n.hidden = !msg; }
   function showDone(ts, updated){
     $("survey").hidden = true; $("done").hidden = false; notice("");
-    $("done-text").textContent = (updated ? "您的回答已于 " : "您已于 ") + fmt(ts) + (updated ? " 更新。" : " 提交问卷。") + "如需补充，可以修改后重新提交，新回答会覆盖原回答。";
+    $("done-text").textContent = (updated ? "你的回答已于 " : "你已于 ") + fmt(ts) + (updated ? " 更新。" : " 提交问卷。") + "如需补充，可以修改后重新提交，新回答会覆盖原回答。";
     window.scrollTo(0,0);
   }
   $("edit-again").onclick = function(){ $("done").hidden = true; $("survey").hidden = false; status(""); $("submit").textContent = "更新我的回答"; };
@@ -52,7 +52,7 @@
     fetch("/api/responses/mine?token=" + encodeURIComponent(token)).then(function(r){ return r.ok ? r.json() : null; }).then(function(rec){
       if(!rec){ store.del(TOKEN); token = null; return; }
       fill(rec); $("submit").textContent = "更新我的回答";
-      notice("您已于 " + fmt(rec.submittedAt) + " 提交过问卷，下面是您之前的回答，修改后可再次提交。", "ok");
+      notice("你已于 " + fmt(rec.submittedAt) + " 提交过问卷，下面是你之前的回答，修改后可再次提交。", "ok");
     }).catch(function(){});
   }
 
@@ -69,7 +69,7 @@
         token = res.j.editToken; store.set(TOKEN, token); store.del(DRAFT);
         showDone(Date.now(), res.j.updated);
       })
-      .catch(function(){ status("网络连接失败，请稍后再点一次提交。您填写的内容已保存在本机。", "err"); })
+      .catch(function(){ status("网络连接失败，请稍后再点一次提交。你填写的内容已保存在本机。", "err"); })
       .then(function(){ btn.disabled = false; });
   });
 })();
